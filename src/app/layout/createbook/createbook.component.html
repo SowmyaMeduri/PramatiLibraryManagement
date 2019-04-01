@@ -13,7 +13,7 @@
 <!-- New book form -->
 <div *ngIf="isNewBookAdded" class="login-page">
   <div class="form">
-    <form [formGroup]="CreateNewBook" (submit)="onSubmit(Image)" class="form-inline">
+    <form [formGroup]="CreateNewBook" class="form-inline">
       <div class="row">
         <div class="col-md-4">
           <mat-form-field class="example-full-width" >
@@ -71,7 +71,7 @@
               <img [src]="url" height="100" *ngIf="isImageUploaded"  style="margin:10px"> <br />
           </div>
         <div class="col-md-12">
-          <button mat-raised-button color="primary" style="margin: 10px; float:right">Add</button>
+          <button mat-raised-button color="primary" style="margin: 10px; float:right" (click)="onSubmit()">Add</button>
           <button mat-raised-button color="warn" (click)="onClose()" tabIndex="-1" style="margin: 10px; float:right">cancel</button>
 
         </div>

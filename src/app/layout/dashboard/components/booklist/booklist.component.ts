@@ -46,18 +46,18 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.configService.getConfigDetails().subscribe(
-    details => {
-    this.result = details;
-    localStorage.setItem('configValues', JSON.stringify(details));
-    } ,
-    error => {
-      console.error('getConfigDetails' + error);
-     this.errorMessage = <any>error; });
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (this.currentUser !== null) {
-    this.roleType = this.currentUser.RoleType === 0 ? true : false;
-    }
+  // this.configService.getConfigDetails().subscribe(
+  //   details => {
+  //   this.result = details;
+  //   localStorage.setItem('configValues', JSON.stringify(details));
+  //   } ,
+  //   error => {
+  //     console.error('getConfigDetails' + error);
+  //    this.errorMessage = <any>error; });
+  //   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  //   if (this.currentUser !== null) {
+  //   this.roleType = this.currentUser.RoleType === 0 ? true : false;
+  //   }
     this.displayedColumns = [ 'Image', 'Name', 'AvailableCopies', 'NumberOfCopies'];
 
   this.bookservice.getAvailableBooks().subscribe(

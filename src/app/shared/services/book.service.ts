@@ -19,10 +19,11 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   private GetAllBooks = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books/GetAllBooks';
-  private booksURL = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books'; private GetAllAvailableBooks = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books/GetAllAvailableBooks';
-  private serviceUrlForPost = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books/AddNewCategoryBook';
+  private booksURL = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books';
+  private GetAllAvailableBooks = 'http://localhost:59179/api/Books/GetAllAvailableBooks';
+  private serviceUrlForPost = 'http://localhost:59179/api/Books/AddNewCategoryBook';
   private addISBN = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books/AddISBNDetails';
-  private getAllIsbnURI = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books/GetAllIsbnDetails';
+  private getAllIsbnURI = 'http://localhost:59179/api/Books/GetAllIsbnDetails';
   private editBooks = 'https://librarymanagement20190208054654.azurewebsites.net/api/Books/EditBook';
   private getUserIssuedBooks = 'https://librarymanagement20190208054654.azurewebsites.net/api/User/GetAllBooksByUserId';
   private getAllIssuedBooks = 'https://librarymanagement20190208054654.azurewebsites.net/api/User/GetAllIssuedBooks';
