@@ -1,0 +1,84 @@
+<!-- <div class="search-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input matInput [(ngModel)]="searchKey" placeholder="search" autocomplete="off"  (keyup)="applyFilter()">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()" *ngIf="searchKey">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+    <div class="mat-elevation-z8 " >  
+      <mat-table class="book-table-container" [dataSource]="dataSource" >
+        <ng-container matColumnDef="TrackNo">
+           <mat-header-cell *matHeaderCellDef  class="headerCell">TrackNo</mat-header-cell> 
+          <mat-cell *matCellDef="let element">{{element.TrackNo}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="BookName">
+             <mat-header-cell *matHeaderCellDef class="headerCell">BookName</mat-header-cell> 
+            <mat-cell *matCellDef="let element">{{element.BookName}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Author">
+               <mat-header-cell *matHeaderCellDef class="headerCell">Author</mat-header-cell> 
+              <mat-cell *matCellDef="let element">{{element.Author}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Description">
+                 <mat-header-cell *matHeaderCellDef class="headerCell">Description</mat-header-cell> 
+                <mat-cell *matCellDef="let element">{{element.Description}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="PublishingYear">
+                <mat-header-cell *matHeaderCellDef class="headerCell">PublishingYear</mat-header-cell> 
+               <mat-cell *matCellDef="let element">{{element.PublishingYear}}</mat-cell>
+             </ng-container>
+              <ng-container matColumnDef="edit">
+                  <mat-header-cell  *matHeaderCellDef class="headerCell"> edit </mat-header-cell>
+                  <mat-cell *matCellDef="let element" >
+                    <mat-icon color="warn" (click)="editBook(element)">edit</mat-icon>
+                  </mat-cell>
+              </ng-container> 
+              <ng-container matColumnDef="delete">
+                <mat-header-cell  *matHeaderCellDef class="headerCell"> Delete </mat-header-cell>
+                <mat-cell *matCellDef="let element" >
+                  <mat-icon color="warn" (click)="deleteBook(element)">delete</mat-icon>
+                </mat-cell>
+            </ng-container>  
+            <ng-container matColumnDef="Block">
+              <mat-header-cell  *matHeaderCellDef class="headerCell"> Block </mat-header-cell>
+              <mat-cell *matCellDef="let element" >
+                <button type="button" [disabled]="element.Occupied" class="btn btn-danger" (click)="BlockBook(element)">Block</button>
+              </mat-cell>
+          </ng-container>
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  Loading data...
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="nodata">
+                  <mat-footer-cell *matFooterCellDef colspan="6">
+                    No data...
+                  </mat-footer-cell>
+                </ng-container>
+    <mat-header-row *matHeaderRowDef="isbnDisplayColumns" class="headerCell">
+    </mat-header-row>
+    <mat-row class="mat-row-id" *matRowDef="let row; columns: isbnDisplayColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
+      </mat-table>
+    </div> 
+    <div>
+        <mat-paginator [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+    </mat-paginator>
+    </div>
+    <h2>{{ excessLimitMsg }}</h2> -->
+
+
+    <h2>{{ excessLimitMsg }}</h2>
+    <div class="mainDiv">
+      <ng2-smart-table 
+    [settings]="settings" 
+    [source]="books">
+</ng2-smart-table> 
+</div> 
+
+<app-returnbookIndicator *ngIf="roleType"></app-returnbookIndicator>
+  

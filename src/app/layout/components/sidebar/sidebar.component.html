@@ -1,0 +1,42 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+
+  <div class="list-group">
+          <div class="profile" *ngIf="!collapsed">
+                  <div class="profile-image" >
+                      <img src={{userImage}} alt="John Doe">
+                  </div>
+                  <div class="profile-data">
+                      <div class="profile-data-name">{{ UserName }}</div>
+                  </div>
+                  <!-- <div class="profile-controls">
+                      <a class="profile-control-left"><span class="fa fa-info"></span></a>
+                      <a class="profile-control-right"><span class="fa fa-envelope"></span></a>
+                  </div> -->
+              </div>
+              <a class="list-group-item" *ngIf="collapsed">
+                      <div class="circle">
+                              <label>{{userNameFirstChar}}</label>
+                            </div>
+                      <!-- <img class="smallimg" src="https://librarymanagement.blob.core.windows.net/blobs/img_fjords.jpg" width="25" height="25"> -->
+                  <!-- <i class="fa fa-fw fa-user"></i>&nbsp;
+                  <span>{{ 'Dashboard' | translate }}</span> -->
+              </a>
+      <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+          <span>{{ 'Dashboard' | translate }}</span>
+      </a>
+      <!-- *ngIf="!roleType" -->
+      <a routerLink="/createbook" [routerLinkActive]="['router-link-active']" class="list-group-item" >
+          <i class="fa fa-fw fa-plus"></i>&nbsp;
+          <span>{{ 'Add Book' | translate }}</span>
+      </a>
+      <a routerLink="/books" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <i class="fa fa-fw fa-book"></i>&nbsp;
+          <span>{{ 'Book List' | translate }}</span>
+      </a>
+   </div>
+  <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+      <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
+      <span>{{ 'Collapse Sidebar' | translate }}</span>
+  </div>
+</nav>

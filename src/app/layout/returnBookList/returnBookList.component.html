@@ -1,0 +1,49 @@
+<div class="mat-elevation-z8 " >  
+    <mat-table class="book-table-container" [dataSource]="dataSource" >
+      <ng-container matColumnDef="Name">
+         <mat-header-cell *matHeaderCellDef  class="headerCell">Name</mat-header-cell> 
+        <mat-cell *matCellDef="let element">{{element.Name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Author">
+           <mat-header-cell *matHeaderCellDef class="headerCell">Author</mat-header-cell> 
+          <mat-cell *matCellDef="let element">{{element.Author}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Edition">
+             <mat-header-cell *matHeaderCellDef class="headerCell">Edition</mat-header-cell> 
+            <mat-cell *matCellDef="let element">{{element.Edition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ISBNNumber">
+               <mat-header-cell *matHeaderCellDef class="headerCell">ISBNNumber</mat-header-cell> 
+              <mat-cell *matCellDef="let element">{{element.ISBNNumber}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="ReturnDate">
+              <mat-header-cell *matHeaderCellDef class="headerCell">ReturnDate</mat-header-cell> 
+             <mat-cell *matCellDef="let element">{{element.ReturnDate | date}}</mat-cell>
+           </ng-container> 
+           <ng-container matColumnDef="IssuedOn">
+            <mat-header-cell *matHeaderCellDef class="headerCell">IssuedOn</mat-header-cell> 
+           <mat-cell *matCellDef="let element">{{element.IssuedOn | date}}</mat-cell>
+         </ng-container> 
+         <ng-container matColumnDef="issue">
+            <mat-header-cell  *matHeaderCellDef class="headerCell"> Issue </mat-header-cell>
+            <mat-cell *matCellDef="let element" >
+                <button type="button" [disabled]="element.Occupied" class="btn btn-primary" (click)="issueBook(element)">Return</button>
+            </mat-cell>
+        </ng-container>
+            <ng-container matColumnDef="loading">
+              <mat-footer-cell *matFooterCellDef colspan="6">
+                Loading data...
+              </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="nodata">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  No data...
+                </mat-footer-cell>
+              </ng-container>
+  <mat-header-row *matHeaderRowDef="isbnDisplayColumns" class="headerCell">
+  </mat-header-row>
+  <mat-row class="mat-row-id" *matRowDef="let row; columns: isbnDisplayColumns;"></mat-row>
+  <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+  <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
+    </mat-table>
+  </div> 

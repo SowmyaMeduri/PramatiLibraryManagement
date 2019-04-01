@@ -1,0 +1,49 @@
+<div [@routerTransition]>
+    <h2 class="text-muted">Latest Books</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%" style="height:350px !important">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+    <!-- <div class="row" *ngIf="!roleType">
+        <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'success'" [icon]="'fa fa-address-card-o'" [count]="9" [label]="'Registered Users'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'primary'" [icon]="'fa fa-book'" [count]="8" [label]="'Issued Books'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'danger'" [icon]="'fa-tasks'" [count]="3" [label]="'Blocked Books'"></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'warning'" [icon]="'fa-support'" [count]="3" [label]="'Config Settings'" ></app-stat>
+        </div>
+
+        </div>
+        <div *ngIf="roleType" style="height:400px !important">
+                <app-bookdetailsdonutchart></app-bookdetailsdonutchart>
+        </div> -->
+    <!-- <hr />
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
+    <hr /> -->
+    <div class="row">
+        <div class="col-md-12">
+        <app-booklist></app-booklist>
+        </div>
+    </div>
+    <br>
+    <!-- <div class="row" *ngIf="roleType">
+        <div class="col-md-12">
+            <app-issuedbooklist></app-issuedbooklist>
+        </div>
+    </div> -->
+</div>

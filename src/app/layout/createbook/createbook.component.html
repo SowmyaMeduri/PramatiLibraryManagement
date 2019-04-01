@@ -1,0 +1,151 @@
+<div>
+  <div class="custom-control custom-radio custom-control-inline" style="visibility: collapse">
+    <input type="radio" class="custom-control-input" id="defaultInline1" name="Books" value="" (click)="AddNew()"
+      checked="checked">
+    <label class="custom-control-label" for="defaultInline1">Add New</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline" style="visibility: collapse">
+    <input type="radio" class="custom-control-input" id="defaultInline2" name="Books" (click)="AddExisting()">
+    <label class="custom-control-label" for="defaultInline2">Add Existing</label>
+  </div>
+</div>
+
+<!-- New book form -->
+<div *ngIf="isNewBookAdded" class="login-page">
+  <div class="form">
+    <form [formGroup]="CreateNewBook" (submit)="onSubmit(Image)" class="form-inline">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width" >
+            <input matInput placeholder="Book Name" formControlName="Name">
+          </mat-form-field>
+        </div>
+
+        <ng-container formArrayName="ISBNNumber">
+          <ng-container formGroupName="0">
+            <div class=col-md-4>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="ISBN Number" formControlName="TrackNo">
+              </mat-form-field>
+            </div>
+            <div class=col-md-4>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Edition" formControlName="Edition">
+              </mat-form-field>
+
+            </div>
+            <div class=col-md-4>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Author" formControlName="Author">
+              </mat-form-field>
+
+            </div>
+            <div class=col-md-4>
+              <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Publish Year" formControlName="PublishingYear">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Description" formControlName="Description">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field>
+                <mat-label>Select floor</mat-label>
+                <mat-select formControlName="floorsData">
+                  <mat-option *ngFor="let data of floors" [value]="data.value">
+                    {{data.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+          </ng-container>
+        </ng-container>
+        <div class="col-md-4">
+
+              <input type="file" #Image accept="image/*" (change)="uploadImage($event)" id=image >
+              <img [src]="url" height="100" *ngIf="isImageUploaded"  style="margin:10px"> <br />
+          </div>
+        <div class="col-md-12">
+          <button mat-raised-button color="primary" style="margin: 10px; float:right">Add</button>
+          <button mat-raised-button color="warn" (click)="onClose()" tabIndex="-1" style="margin: 10px; float:right">cancel</button>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+<!-- style= "display:inline-block;" -->
+<div *ngIf="isIncreasedBooks" class="login-page" style="visibility: collapse">
+  <div class="form">
+    <form [formGroup]="AddToExistingBooks" (submit)="onExistingSubmit()" class="form-inline">
+
+      <div class="row">
+          <div class="form-group" class="col-md-4">
+              <mat-form-field>
+                <mat-select placeholder="Select any..." [(value)]="selectedBook" [formControl]="bankCtrl">
+                  <div>
+                    <mat-option>
+                      <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let book of filteredBanks | async" [value]="book.Id">
+                      <img with="40" height="40" src="{{book.Image}}">
+                      {{book.Name}}
+                    </mat-option>
+                  </div>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              <ng-container formArrayName="ISBNNumber">
+                <ng-container formGroupName="0">
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="ISBN Number" formControlName="TrackNo">
+                    </mat-form-field>
+                  </div>
+                  <div class=col-md-4>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Edition" formControlName="Edition">
+                    </mat-form-field>
+                  </div>
+                  <div class=col-md-4>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Description" formControlName="Description">
+                    </mat-form-field>
+                  </div>
+                  <div class=col-md-4>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Author" formControlName="Author">
+                    </mat-form-field>
+                  </div>
+                  <div class=col-md-4>
+                    <mat-form-field class="example-full-width">
+                      <input matInput [matDatepicker]="picker" placeholder="Publish Year" formControlName="PublishingYear">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+
+                </ng-container>
+              </ng-container>
+              <div class="col-md-4">
+                    <input type="file" #Image accept="image/*" (change)="uploadImage($event)" id=image>
+                    <img [src]="url" height="100" *ngIf="isImageUploaded" style="margin:10px"> <br />
+                </div>
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" style="margin: 10px; float: right;">Add</button>
+              <button mat-raised-button color="warn" (click)="onClose()" tabIndex="-1" style="margin: 10px; float: right;">cancel</button>
+            </div>
+      </div>
+
+    </form>
+  </div>
+</div>

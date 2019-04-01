@@ -1,0 +1,60 @@
+<div class="login-page">
+        <div class="form">
+          <form [formGroup]="userDetails"  class="form-inline">
+            <div class="row">
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="First Name" formControlName="FirstName" >
+                  </mat-form-field>
+            </div>
+            <div class="col-md-4" >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Middle Name" formControlName="MiddleName" >
+                  </mat-form-field>
+          </div>
+            <div class="col-md-4" >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" formControlName="LastName" >
+                    </mat-form-field>
+              </div>
+            
+            <div class="col-md-4" >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="User Name" formControlName="UserName" readonly=true disabled=true >
+                  </mat-form-field>
+            </div>
+                    <div class="col-md-4" >
+                       <mat-form-field class="example-full-width">
+                           <input matInput  [matDatepicker]="picker" placeholder="Select DOB" formControlName="DateOfBirth">
+                           <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                           <mat-datepicker #picker></mat-datepicker>
+                         </mat-form-field>
+                    </div>
+                      <div class="col-md-4" >
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Email" formControlName="Email" readonly=true disabled=true >
+                              </mat-form-field>
+                        </div>
+                       
+            <div class="col-md-4" >
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Phone Number" formControlName="PhoneNumber" >
+                </mat-form-field>
+          </div>
+                     <div class="col-md-4"> 
+                  <input type="file" (change)="UploadImage($event)" id=image style="margin:20px">
+                  <img [src]="url" height="100" *ngIf="isImageUploaded" > <br/>
+                  </div>
+                
+          <!-- <div class="col-md-3" class="form-group">   </div> -->
+            <div  class="col-md-12">
+                  <button  style="margin: 10px; float: right;" (click)="editUserDetails(Image)" mat-raised-button color="primary">Save</button>
+                  <button mat-raised-button color="warn" (click)="onClose()" tabIndex="-1" style="margin: 10px; float:right">cancel</button>
+                </div>
+          </div>
+          </form>
+        </div>
+      </div>
+      
+      
+      

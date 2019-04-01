@@ -1,0 +1,66 @@
+
+ <div class="search-div">
+   <h2 class="text-muted">Available Books</h2>
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input matInput [(ngModel)]="searchKey" placeholder="search" autocomplete="off"  (keyup)="applyFilter()">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()" *ngIf="searchKey">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+    <div class="mat-elevation-z8 tablediv">
+      <mat-table class="book-table-container" [dataSource]="dataSource" >
+          <ng-container matColumnDef="Image">
+              <mat-header-cell *matHeaderCellDef  class="headerCell">Image</mat-header-cell>
+             <mat-cell *matCellDef="let element" ><img src={{element.Image}} alt="No image"/></mat-cell>
+           </ng-container>
+        <ng-container matColumnDef="Name">
+           <mat-header-cell *matHeaderCellDef  class="headerCell">Name</mat-header-cell>
+          <mat-cell *matCellDef="let element" class="contentCell">{{element.Name}}</mat-cell>
+        </ng-container>
+          <ng-container matColumnDef="AvailableCopies">
+               <mat-header-cell *matHeaderCellDef class="headerCell">Blocked Copies</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.AvailableCopies}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="NumberOfCopies">
+                 <mat-header-cell *matHeaderCellDef class="headerCell">Available Copies</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.NumberOfCopies}}</mat-cell>
+              </ng-container>
+              <!-- <ng-container matColumnDef="edit">
+                  <mat-header-cell  *matHeaderCellDef class="headerCell"> edit </mat-header-cell>
+                  <mat-cell *matCellDef="let element" >
+                    <mat-icon color="warn" (click)="editBook(element)">edit</mat-icon>
+                  </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell  *matHeaderCellDef class="headerCell"> Actions </mat-header-cell>
+                <mat-cell *matCellDef="let element" >
+                  <mat-icon color="warn" (click)="deleteBook(element)">delete</mat-icon>
+                </mat-cell>
+            </ng-container>  -->
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  Loading data...
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="nodata">
+                  <mat-footer-cell *matFooterCellDef colspan="6">
+                    No data...
+                  </mat-footer-cell>
+                </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="headerCell">
+    </mat-header-row>
+    <mat-row class="mat-row-id" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
+      </mat-table>
+    </div>
+    <div class="col-md-6" class="form-group ">
+      <mat-paginator [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+  </mat-paginator>
+  </div>
+
+
+

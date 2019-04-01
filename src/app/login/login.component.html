@@ -1,0 +1,17 @@
+
+
+<div class="login-page" [@routerTransition]>
+    <div class="form">
+      <button class="btn btn-primary" style="background-color: #c63d2d; border-color: #c63d2d;" (click)="socialSignIn()"><i class="fa fa-google"></i>
+        Google</button>
+<div></div>
+      <span *ngIf="ShowInvalidLogin" style="color:red">Invalid Credentials</span>
+      </div>
+  </div>
+
+
+
+<!-- <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
+&nbsp;
+<a class="btn rounded-btn" [routerLink]="['/signup']">{{ 'Register' | translate }}</a>
+</form> -->
